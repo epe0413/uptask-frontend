@@ -44,7 +44,7 @@ const Login = () => {
                 className='block text-center my-5 text-slate-500 uppercase text-sm'
                 to="/registrar"
             >
-            ¿No tienes una cuenta? Regístrate
+            ¿No tienes una cuenta? <span className="font-bold">Regístrate</span>
             </Link>
             <Link
                 className='block text-center my-5 text-slate-500 uppercase text-sm'
