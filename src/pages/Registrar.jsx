@@ -1,18 +1,62 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import Alerta from '../components/Alerta'
+
 const Registrar = () => {
 
     const [nombre, setNombre] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [repetirPassword, setRepetirPassword] = useState('')
+    const [alerta, setAlerta] = useState({})
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        if([nombre, email, password, repetirPassword].includes('')){
+            setAlerta({
+                msg: 'Todos los campos son obligatorios',
+                error: true
+            })
+            return
+        }
+
+        if(password !== repetirPassword){
+            setAlerta({
+                msg: 'Los Password no son iguales',
+                error: true
+            })
+            return
+        }
+
+        if(password.length < 6){
+            setAlerta({
+                msg: 'El Password es muy corto, agrega minimo 6 caracteres',
+                error: true
+            })
+            return
+        }
+
+        setAlerta({})
+
+        // Crear el usuario en la API
+
+        console.log('Creando')
+    }
+
+    const { msg } = alerta
 
   return (
     <>
         <h1 className="text-sky-600 font-black text-4xl md:text-5xl capitalize text-center">Crea tu cuenta y Administra tus <span className="text-slate-700">proyectos</span></h1>
 
-        <form className="my-10 mx-5 bg-white shadow rounded-lg p-5">
+        {msg && <Alerta alerta={alerta}/>}
+
+        <form
+            className="my-10 mx-5 md:mx-0 bg-white shadow rounded-lg p-5"
+            onSubmit={handleSubmit}
+        >
             <div className="my-5">
                 <label
                     className="uppercase text-gray-700 block text-xl font-bold"
