@@ -2,7 +2,7 @@ function App() {
 
   return (
     <div>
-      hola
+      <h1>UpTask</h1>
     </div>
   )
 }
