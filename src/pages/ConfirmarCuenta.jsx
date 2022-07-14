@@ -15,6 +15,7 @@ const ConfirmarCuenta = () => {
   useEffect(()=> {
     const confirmarCuenta = async() => {
       try {
+        // TODO: Mover hacia un cliente axios
         const url = `http://localhost:4000/api/usuarios/confirmar/${id}`
         const { data } = await axios(url)
 
@@ -42,14 +43,14 @@ const ConfirmarCuenta = () => {
 
         <div className='mt-20 md:mt-10 shadow-lg px-5 py-10 rounded-xl bg-white'>
           {msg && <Alerta alerta={alerta}/>}
-          {cuentaConfirmada && 
-          <Link
-          className='block text-center my-5 text-slate-500 uppercase text-sm'
-          to="/"
-          >
-            <span className="font-bold">Inicia Sesión</span>
-          </Link>
-          }
+          {cuentaConfirmada && (
+            <Link
+            className='block text-center my-5 text-slate-500 uppercase text-sm'
+            to="/"
+            >
+              <span className="font-bold">Iniciar Sesión</span>
+            </Link>
+          )}
         </div>
     </>
   )
