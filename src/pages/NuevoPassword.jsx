@@ -25,7 +25,7 @@ const NuevoPassword = () => {
                 })
             }
         }
-        comprobarToken()
+        return ()=>{comprobarToken()}
     },[])
 
     const handleSubmit = async e => {
