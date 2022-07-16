@@ -12,7 +12,7 @@ import Proyectos from './pages/Proyectos'
 import NuevoProyecto from './pages/NuevoProyecto'
 
 import { AuthProvider } from './context/AuthProvider'
-import { ProyectosProvider } from './context/ProyectosContext'
+import { ProyectosProvider } from './context/ProyectosProvider'
 
 function App() {
 
