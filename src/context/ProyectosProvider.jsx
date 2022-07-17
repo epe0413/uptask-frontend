@@ -12,6 +12,29 @@ const ProyectosProvider = ({children}) => {
 
     const navigate = useNavigate()
 
+    useEffect(() =>{
+        const obtenerProyectos = async () => {
+            try {
+                const token = localStorage.getItem('token')
+                if(!token) return
+                
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+
+                const { data } = await clienteAxios('/proyectos', config)
+                setProyectos(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        return ()=> {obtenerProyectos()}
+    },[])
+
     const mostrarAlerta = alerta => {
         setAlerta(alerta)
 
@@ -20,7 +43,7 @@ const ProyectosProvider = ({children}) => {
         }, 5000);
     }
 
-    const submitProycto = async proyecto => {
+    const submitProyecto = async proyecto => {
         try {
             const token = localStorage.getItem('token')
             if(!token) return
@@ -33,8 +56,6 @@ const ProyectosProvider = ({children}) => {
             }
 
             const { data } = await clienteAxios.post('/proyectos', proyecto, config)
-
-            console.log(data)
 
             setAlerta({
                 msg: 'Proyecto creado correctamente',
@@ -56,7 +77,7 @@ const ProyectosProvider = ({children}) => {
                 proyectos,
                 mostrarAlerta,
                 alerta,
-                submitProycto
+                submitProyecto
             }}
         >
             {children}
